@@ -1,0 +1,5 @@
+﻿  main.cpp
+e:\projekt\ppk-project\plecak\projekt-plecak\bag.h(41): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+e:\projekt\ppk-project\plecak\projekt-plecak\main.cpp(8): warning C4305: "argument": obcięcie z "double" do "float"
+e:\projekt\ppk-project\plecak\projekt-plecak\main.cpp(21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+  projekt-plecak.vcxproj -> E:\PROJEKT\PPK-project\plecak\Debug\projekt-plecak.exe
