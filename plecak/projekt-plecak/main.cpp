@@ -1,6 +1,7 @@
 #include<iostream>
 #include"Item.h"
 #include"Bag.h"
+#include"functions.h"
 using namespace std;
 
 int main() {
@@ -11,6 +12,16 @@ int main() {
 	add(bag, item);
 	add(bag, item1);
 	showBag(bag);
+
+	///
+	string name = "odczyt.txt";
+
+	vector<Item> first = readFromFile(name);
+	int i = 0;
+	while (i < first.size()) {
+		showItem(first[i++]);
+		cout << endl;
+	}
 
 	return 0;
 }
