@@ -6,3 +6,11 @@ tablet 0.5 900
 pralka 35.0 2200
 aparat 1.2 3500
 czajnik 1.5 130
+talerz 1.1 50
+kielich 1.5 300
+widelec 0.3 20
+serwetka 0.1 5
+mikrofon 0.9 200
+zeszyt 1.3 120
+zelazko 8.1 600
+zmywarka 13.4 5000

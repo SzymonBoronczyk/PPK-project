@@ -1,44 +1,62 @@
 #pragma once
-#include"Item.h"
+#include"item.h"
 #include<vector>
 
 struct Bag {
-	std::vector<Item> items;
+	std::vector<int> item_id;
 	float capacity; // udüwig
-	float maxCapacity;
+	float max_capacity;
 	float value;
 };
 
 void clearBag(Bag &bag) {
-	bag.items.clear();
+	bag.item_id.clear();
 	bag.capacity = 0;
 	bag.value = 0;
 }
 
-bool add(Bag &bag, Item item) {
+bool add_to_bag(Bag &bag, item &item) {
 
-	if (bag.capacity + item.weight <= bag.maxCapacity) {
+	if (bag.capacity + item.weight <= bag.max_capacity) {
 		bag.capacity += item.weight;
 		bag.value += item.value;
-		bag.items.push_back(item);
+		bag.item_id.push_back(item.id);
 		return true; // z powodzeniem dodano przedmiot
 	}
 	return false; // przedmiot za ciÍøki
 }
 
-Bag createBag(float maxCapacity, int memory) {
+Bag create_bag(float maxCapacity) {
 	Bag bag;
-	bag.maxCapacity = maxCapacity;
+	bag.max_capacity = maxCapacity;
 	bag.capacity = 0;
 	bag.value = 0;
-	if(memory > 0) bag.items.reserve(memory);
-	else bag.items.reserve(100);
 	return bag;
 }
 
-void showBag(Bag &bag) {
+void show_bag(Bag &bag, std::vector<item> items) {
 	//for (auto i = bag.items.begin(); i < bag.items.end(); ++i) {
-	for(int i = 0; i < bag.items.size(); ++i){
-		showItem(bag.items[i]);
+	int temp;
+	for (int i = 0; i < bag.item_id.size(); ++i) {
+		temp = bag.item_id[i];
+		show_item(items[temp]);
 	}
+}
+
+void show_bag_2(Bag &bag, std::vector<item> items) {
+	std::cout << "Pojemnosc: " << bag.capacity << " / " << bag.max_capacity << std::endl;
+	std::cout << "Wartosc: " << bag.value << std::endl;
+	std::cout << "Przedmioty: ";
+	for (int i = 0; i < bag.item_id.size(); ++i) {
+		std::cout << bag.item_id[i] << " ";
+	}
+	std::cout << std::endl;
+}
+
+bool is_in_bag(Bag &bag, int item_id) {
+	for (int i = 0; i < bag.item_id.size(); ++i) {
+		if (bag.item_id[i] == item_id) return true;
+	}
+	return false;
+
 }

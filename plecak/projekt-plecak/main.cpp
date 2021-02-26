@@ -1,27 +1,69 @@
 #include<iostream>
-#include"Item.h"
-#include"Bag.h"
-#include"functions.h"
+#include "bag.h"
+#include "functions.h"
+#include "item.h"
+
+
 using namespace std;
 
 int main() {
-	Item item = createItem("Kielich", 1000, 14.20);
-	//show(item);
-	Item item1 = createItem("Pierscien", 2000, 15.50);
-	Bag bag = createBag(5000, 10);
-	add(bag, item);
-	add(bag, item1);
-	showBag(bag);
+	std::string name_file = "odczyt.txt";
 
-	///
-	string name = "odczyt.txt";
-
-	vector<Item> first = readFromFile(name);
+	vector<item> items = read_from_file(name_file);
 	int i = 0;
-	while (i < first.size()) {
-		showItem(first[i++]);
+	while (i < items.size()) {
+		show_item(items[i++]);
 		cout << endl;
 	}
+	cout << "-----------" << endl;
+
+	Bag bag = create_bag(15);
+	
+	for (int i = 0; i < items.size(); ++i) {
+		cout << add_to_bag(bag, items[i]) << endl;
+	}
+
+	cout << "-----------" << endl;
+	show_bag(bag, items);
+	show_bag_2(bag, items);
+
+	cout << " \n \n -------------\n  \n";
+
+	vector<Bag> bags;
+	bags.push_back(bag);
+	bags.push_back(create_bag(20));
+
+	for (int i = items.size() - 1; i > 0; --i) {
+		cout << add_to_bag(bags[1], items[i])<< " ";
+	}
+	cout << endl;
+
+	cout << "Plecak 1: ";
+	show_bag_2(bags[0], items);
+
+	cout << endl << "Plecak 2: ";
+	show_bag_2(bags[1], items);
+
+	bags.clear();
+
+	bags = generate(items, 13, 20);
+
+	cout << "\n \nWygenerowane plecaki: " << endl;
+	for (int i = 0; i < 20; ++i) {
+		cout << "Plecak " << i + 1 << " ";
+		show_bag_2(bags[i], items);
+		cout << endl;
+	}
+
+	bags = selection(bags, 5);
+
+	cout << "\n \nSelekcja plecakow: " << endl;
+	for (int i = 0; i < 5; ++i) {
+		cout << "Plecak " << i + 1 << " ";
+		show_bag_2(bags[i], items);
+		cout << endl;
+	}
+
 
 	return 0;
 }
