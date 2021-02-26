@@ -4,8 +4,8 @@ e:\projekt\ppk-project\plecak\projekt-plecak\bag.h(34): warning C4018: "<": niez
 e:\projekt\ppk-project\plecak\projekt-plecak\bag.h(56): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 e:\projekt\ppk-project\plecak\projekt-plecak\bag.h(66): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
 e:\projekt\ppk-project\plecak\projekt-plecak\bag.h(73): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-e:\projekt\ppk-project\plecak\projekt-plecak\functions.h(38): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-e:\projekt\ppk-project\plecak\projekt-plecak\functions.h(107): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-e:\projekt\ppk-project\plecak\projekt-plecak\main.cpp(14): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-e:\projekt\ppk-project\plecak\projekt-plecak\main.cpp(22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+e:\projekt\ppk-project\plecak\projekt-plecak\functions.h(37): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+e:\projekt\ppk-project\plecak\projekt-plecak\functions.h(42): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+e:\projekt\ppk-project\plecak\projekt-plecak\functions.h(61): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+e:\projekt\ppk-project\plecak\projekt-plecak\functions.h(130): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
   projekt-plecak.vcxproj -> E:\PROJEKT\PPK-project\plecak\Debug\projekt-plecak.exe

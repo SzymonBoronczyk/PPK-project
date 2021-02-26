@@ -29,6 +29,29 @@ std::vector<item> read_from_file(const std::string &fileName) {
 	return result;
 }
 
+
+void save_to_file(std::vector<Bag> bags, std::vector<item> &items) {
+	std::ofstream file("result.txt");
+	std::stringstream ss;
+	int number_generation = 1;
+	for (int j = 0; j < bags.size(); ++j) {
+		ss << "Generacja: " << number_generation++
+			<< " waga: " << bags[j].capacity << "/" << bags[j].max_capacity
+			<< " wartosc: " << bags[j].value << std::endl;
+		int temp_id;
+		for (int i = 0; i < bags[j].item_id.size(); ++i) {
+			temp_id = bags[j].item_id[i];
+			ss << items[temp_id].name << " " << items[temp_id].weight << " " << items[temp_id].value << std::endl;
+		}
+	}
+	file << ss.rdbuf();
+	file.close();
+}
+
+
+
+
+
 std::vector<Bag> generate(std::vector<item> &items, float max_capacity, int ammount_generations) {
 	std::vector<Bag> result;
 	int rand, items_size, temp = 0;
@@ -161,3 +184,27 @@ Bag cross(Bag bag1, Bag bag2, std::vector<item> &items) {
 	return bag1;
 
 }
+
+
+Bag algorithme(std::vector<item> &items, float bag_max_capacity, int ammount_generations) {
+	std::vector<Bag> generation1, generation2;
+	std::vector<Bag> results;
+	generation1 = generate(items, bag_max_capacity, ammount_generations);
+	generation2 = generate(items, bag_max_capacity, ammount_generations);
+
+	generation1 = selection(generation1, ammount_generations / 2);
+	generation2 = selection(generation2, ammount_generations / 2);
+
+	for (int i = 0; i < ammount_generations / 2; ++i) {
+		results.push_back(cross(generation1[i], generation2[i], items));
+	}
+
+	for (int i = 0; i < ammount_generations / 2; ++i) {
+		results.push_back(generation1[i]);
+		results.push_back(generation2[i]);
+	}
+
+	results = selection(results, 1);
+	return results[0];
+}
+
