@@ -26,6 +26,22 @@ bool add_to_bag(Bag &bag, item &item) {
 	return false; // przedmiot za ciê¿ki
 }
 
+bool remove_item_from_bag(Bag &bag, const std::vector<item> &items, int remove_id) {
+	if (bag.item_id.size() < remove_id || remove_id < 0) return false;
+	bag.value -= items[remove_id].value;
+	bag.capacity -= items[remove_id].weight;
+	auto it = bag.item_id.begin();
+	for (int i = 0; i < bag.item_id.size(); ++i) {
+		if (bag.item_id[i] == remove_id) {
+			bag.item_id.erase(it);
+			return true;
+		}
+		it++;
+	}
+	return false;
+}
+
+
 Bag create_bag(float maxCapacity) {
 	Bag bag;
 	bag.max_capacity = maxCapacity;

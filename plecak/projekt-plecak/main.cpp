@@ -64,6 +64,18 @@ int main() {
 		cout << endl;
 	}
 
+	cout << "\n\n\nczy usuwarka dziala:  \n";
+	cout << remove_item_from_bag(bags[0], items, 2)<<endl;
+	cout << remove_item_from_bag(bags[0], items, 6)<<endl<<endl;
+	show_bag_2(bags[0], items);
+
+	cout << endl << endl << endl;
+	Bag cross_bag;
+	cross_bag = cross(bags[0], bags[1], items);
+	show_bag_2(cross_bag, items);
+	cout << endl;
+	cross_bag = cross(bags[2], bags[3], items);
+	show_bag_2(cross_bag, items);
 
 	return 0;
 }

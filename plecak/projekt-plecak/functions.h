@@ -99,3 +99,65 @@ std::vector<Bag> selection(std::vector<Bag> bags, int quantity_selection) {
 	}
 	return result;
 }
+
+Bag cross(Bag bag1, Bag bag2, std::vector<item> &items) {
+	int rand, bag1_item_id_size, temp, bag2_item_id_size; 
+	int determinant; // dokladny item z wektora item, na ktory wskazuje rand
+	auto it = bag1.item_id.begin();
+	srand(time(NULL));
+	bag1_item_id_size = (int)bag1.item_id.size();
+	bag2_item_id_size = (int)bag2.item_id.size();
+
+	for (int i = 0; i < bag1_item_id_size /2 ; ++i) {
+		rand = std::rand() % (int)bag1.item_id.size();
+		determinant = bag1.item_id[rand];
+		remove_item_from_bag(bag1, items, determinant);
+	}
+	bag1_item_id_size = (int)bag1.item_id.size();
+
+	while (true) {
+		temp = 0;
+		rand = std::rand() % bag2_item_id_size;		// w tym przypadku rand wsazuje na tablice item_id z bag2
+		determinant = bag2.item_id[rand];
+
+		if (is_in_bag(bag1, determinant)) {
+			rand = std::rand() % bag2_item_id_size; 
+			determinant = bag2.item_id[rand];
+		}
+
+
+		while (is_in_bag(bag1, determinant)) {
+			temp++;
+			rand = (rand + 1) % bag2_item_id_size;
+
+			determinant = bag2.item_id[rand];
+
+			if (temp == bag2_item_id_size) {
+				break;
+			
+			}
+
+		}
+
+		if (temp == bag2_item_id_size) break;
+
+		temp = rand;
+
+		while (!add_to_bag(bag1, items[determinant])) {
+
+			do {
+				rand = (rand + 1) % bag2_item_id_size;
+				determinant = bag2.item_id[rand];
+			} while (is_in_bag(bag1, determinant));
+			if (temp == rand) {
+				temp = -1;
+				break;
+			}
+		}
+
+		if (temp == -1) break;
+	}
+
+	return bag1;
+
+}
